@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>        
+  <script>
+    function call(url){
+            $.ajax({
+                url: '/'+url,
+                type: 'POST',
+                error: function(error) {
+                    console.log(error);
+                }
+            });
+        };
+  </script>
+  <title>Proton IoT</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <style>
+    /* Remove the navbar's default rounded borders and increase the bottom margin */ 
+    .navbar {
+      margin-bottom: 50px;
+      border-radius: 0;
+    }
+    
+    /* Remove the jumbotron's default bottom margin */ 
+     .jumbotron {
+      margin-bottom: 0;
+    }
+   
+    /* Add a gray background color and some padding to the footer */
+    footer {
+      background-color: #f2f2f2;
+      padding: 25px;
+    }
+  </style>
+  <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+</head>
+<body style="font-family: 'Ubuntu'">
+
+<div class="row">
+    <div class="jumbotron" style="margin-bottom: 10px; padding: 10px;">
+            <div class="row">
+                <div class="col">
+                    <img style="float: left; margin-left: 25px;" src="/static/JWLogo.png"></img>
+                </div>     
+                <div class="col">
+                    <h1 style="float: left; margin-left: 25px; text-align: center;">Proton IoT</h1>  
+                </div>     
+            </div>
+    </div>
+</div>
+
+<div class="container">
+    <!-- <div class="row" style="margin-top: 20px;">
+        {% for item in box0to3 %}
+            <div class="col-sm-3">
+                <div class="well">
+                    {{ item }}
+                </div>
+            </div>
+        {% endfor %}
+    </div> -->
+    <div class="row" style="margin-top: 20px;">
+        <button class="btn" onclick="call('device/1on')">HELLO</button>
+        <button class="btn" onclick="call('device/1on')">HELLO</button>
+        <button class="btn" onclick="call('device/1on')">HELLO</button>
+    </div>
+    <div class="row" style="margin-top: 20px;">
+        <button class="btn" onclick="call('device/1on')">HELLO</button>
+        <button class="btn" onclick="call('device/1on')">HELLO</button>
+        <button class="btn" onclick="call('device/1on')">HELLO</button>
+    </div>
+    <div class="row" style="margin-top: 20px;">
+        <button class="btn" onclick="call('device/1on')">HELLO</button>
+        <button class="btn" onclick="call('device/1on')">HELLO</button>
+        <button class="btn" onclick="call('device/1on')">HELLO</button>
+    </div>
+</div>
+
+
+</body>
+</html>
+

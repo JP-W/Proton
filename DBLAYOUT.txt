@@ -1,0 +1,10 @@
+Modules:
+ID - integer which is individual
+Name - short, can have spaces, is displayed on screen
+Type - various options including:
+       - light: standard light
+       - rgb-light: RGB light
+       - relay: relay of any type (go onto different page)
+       - door: door control module
+Page - (NOT YET IMPLEMENTED) optional reference to page in case multiple types of module are needed per page.
+Clearance - (NOT YET IMPLEMENTED) only works for x clearance level

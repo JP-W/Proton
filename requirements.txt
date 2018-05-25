@@ -1,0 +1,7 @@
+tqdm==4.19.5
+Flask_MQTT==0.0.11
+setuptools==38.5.1
+Flask==0.10.1
+requests==2.18.4
+Jinja2==2.10
+Frozen_Flask==0.15

@@ -1,0 +1,5 @@
+setup.py
+Proton_IoT.egg-info/PKG-INFO
+Proton_IoT.egg-info/SOURCES.txt
+Proton_IoT.egg-info/dependency_links.txt
+Proton_IoT.egg-info/top_level.txt

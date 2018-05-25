@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>{{ title }}</title>
+  <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no' />
+  
+  <style>
+    .bottom-left {
+      position: absolute;
+      bottom: 8px;
+      left: 16px;
+    }
+
+    #btnILB{
+      display: inline-block;
+      vertical-align: top;
+    }
+
+    .centre {
+      display: flex;
+      justify-content: center;
+    }
+    
+    /* .navbar-brand>img {
+      height: 100%;
+    }
+
+    .navbar-brand {
+      padding: 0;
+    } */
+
+  /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
+  /*.row.content {height: 1080px}*/
+  /* Set gray background color and 100% height */
+  .sbswell
+  {
+  display: inline-block;
+  padding-left: 10px;
+  padding-right: 10px;
+  }
+  .profilepic
+  {
+  width: 110px;
+  height: 130px;
+  float: left;
+  padding: 10px 0;
+  border-radius: 50%;
+  }
+  .well2
+  {
+  background: rgb(0, 69, 173);
+  }
+  .box {}
+  .enjoy-css {
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  float: right;
+  width: 83%;
+  height: 10%;
+  padding: 20px;
+  overflow: hidden;
+  border: 3px double;
+  font: normal 57px/1 Arial, Helvetica, sans-serif;
+  color: rgba(86,86,86,1);
+  text-align: center;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+  background: #ffffff;
+  text-shadow: 1px 1px 1px rgba(0,0,0,0.2) ;
+  }
+  @media (max-width: @screen-xs) {
+  body{font-size: 10px;}
+  }
+  @media (max-width: @screen-sm) {
+  body{font-size: 14px;}
+  }
+
+  @media (max-width: 768px) {
+  mobilefix{margin-top: 10px;}
+  }
+
+  h5{
+  font-size: 1.4em;
+  }         
+  </style>
+  <link rel="stylesheet" href="static/font-awesome.min.css"> 
+  <link href="static/james.css" rel="stylesheet" type="text/css">
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js" type="text/javascript"></script>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/holder/2.3.2/holder.min.js" type="text/javascript"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@2.7.1/dist/Chart.bundle.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>    
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jscolor/2.0.4/jscolor.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/spectrum/1.8.0/spectrum.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/spectrum/1.8.0/spectrum.min.css">
+  <script>
+    function call(url){
+      $.ajax({
+          url: '/'+url,
+          type: 'POST',
+          error: function(error) {
+              console.log(error);
+          }
+      });
+    };
+
+    function jsoncall(devid, value) {
+      //$.post("/jsontest", JSON.stringify(funcdata), function(){});
+      $.ajax({
+          url: '/jsontest',
+          type: 'POST',
+          datatype: 'json',
+          contentType: 'application/json; charset=utf-8',
+          data: JSON.stringify('{"device": "'+devid+'", "IO": "'+value+'"}'),
+          error: function(error) {
+              console.log(error);
+          }
+      });
+    }
+
+    //function doorcall(value) {
+    //    $.post({
+    //        url: 'http://192.168.2.15/script.php?'+value+'=true'
+    //    });
+    //}
+    function doorcall(value) {
+        $.ajax({
+            url: '/door',
+            type: 'POST',
+            datatype: 'json',
+            contentType: 'application/json; charset=utf-8',
+            data: JSON.stringify('{"value": "'+value+'"}'),
+            error: function(error) {
+                console.log(error);
+            }
+        });
+    }
+
+
+    function comcall(devid, value) {
+        $.ajax({
+            url: '/commercial',
+            type: 'POST',
+            datatype: 'json',
+            contentType: 'application/json; charset=utf-8',
+            data: JSON.stringify('{"device": "'+devid+'", "IO": "'+value+'"}'),
+            error: function(error) {
+                console.log(error);
+            }
+        });
+    }
+
+    function update(jscolor) {
+        alert(jscolor)
+    }
+  </script>
+  <script>
+    Holder.add_theme("white", { background:"#fff", foreground:"#a7a7a7", size:10 });
+  </script>
+</head>
+
+<body> 
+    <div class="container-fluid" id="page">
+        <!-- <div class="alert topmargin alert-warning">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            Proton IoT is protected by the Creative Commons&nbsp;Attribution-NonCommercial-NoDerivatives 4.0 International Licence. This roughly means that if you modify my content in any way, it can be held up in court. Please note that a CC licence has never been held invalid or unenforceable in court. Click the button at the bottom of the page for more information.
+        </div> -->
+        <!-- <div class="alert alert-danger topmargin">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        This is a demo, so nothing will work. For further information email me: 
+            <a href="mailto:enquiry@jw.network">enquiry@jw.network</a>
+        </div> -->
+        {% if profile[3] == 1 %}
+            <div class="alert alert-info topmargin">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                This is the demo account. Nothing is functional but it mirrors my current setup (except for high clearance modules)
+                For more info <a href="mailto:enquiry@jw.network">email me</a>.
+            </div>
+        {% endif %}
+        <div class="jumbotron topmargin">
+            <h1><b>Proton IoT</b></h1>
+            <p>Welcome to Proton IoT Control Panel <span style="color: green;">v1.1 Stable</span>&nbsp;Alpha</p>
+        </div>
+        <div class="row content">
+            <div class="col-sm-12"> 
+                <ul class="nav nav-tabs"> 
+                    <li class="active">
+                        <a data-toggle="tab" href="#db" style="color: rgb(0, 0, 0);">Dashboard</a>
+                    </li>                         
+                    <li>
+                        <a data-toggle="tab" href="#rs" style="color: rgb(0, 0, 0);">Relays & Switches <b>(OUTPUT)</b></a>
+                    </li>                         
+                    <li>
+                        <a data-toggle="tab" href="#sb" style="color: rgb(0, 0, 0);">Sensors & Buttons <b>(INPUT)</b></a>
+                    </li>
+                    <li>
+                        <a data-toggle="tab" href="#com" style="color: rgb(0, 0, 0);">Commercial Lights</b></a>
+                    </li>                            
+                    <li>
+                        <a data-toggle="tab" href="#weather" style="color: rgb(0, 0, 0);"><span class="glyphicon glyphicon-cloud"></span> Weather</a>
+                    </li>                         
+                    <li>
+                        <a data-toggle="tab" href="#cams" style="color: rgb(0, 0, 0);"><span class="glyphicon glyphicon-facetime-video"></span> Webcams</a>
+                    </li>                         
+                    <li>
+                        <a data-toggle="tab" href="#mqtt" style="color: rgb(0, 0, 0);"><span class="glyphicon glyphicon-cog"></span> Settings/Info</a>
+                    </li>                         
+                    <li class="dropdown">
+                        <ul class="dropdown-menu"> 
+                            <li>
+                                <a href="#">Action</a>
+                            </li>                                 
+
+                            <li>
+                                <a href="#">Another action</a>
+                            </li>                                 
+
+                            <li class="divider"></li>                                 
+
+                            <li>
+                                <a href="#">Separated link</a>
+                            </li>                                 
+                        </ul>
+                    </li>
+                </ul>                     
+                <div class="tab-content"> 
+                    <div id="db" class="tab-pane fade in active"> 
+                        <div class="col-md-3"> 
+                            <div class="well-lg"> 
+                                <h2>Profile</h2>
+                                <div class="well">
+                                    <a href="">
+                                        <img src="static/avatars/{{profile[0]}}.jpg" width="150" height="150" class="img-thumbnail img-responsive">
+                                    </a>
+                                    <h2>Welcome, {{profile[0]}}<br></h2>
+                                    <h4><b>Full name:</b> {{profile[2]}}</h4>
+                                    <h4><b>Clearance Level:</b> {{profile[3]}}</h4>
+                                    {% if profile[3] != Null %}
+                                        <h4><b>Other:</b> {{profile[4]}}</h4>
+                                    {% endif %}
+                                </div>                                     
+                            </div>                                 
+                        </div>
+                        <div class="col-md-9"> 
+                            <div class="well-lg"> 
+                                <h2>Modules</h2>
+                                {% for module in modules %}
+                                    {% if module[2] == "light" or module[2] == "rgb-light"%}
+                                        <div class="well visible-lg-inline-block visible-md-inline-block visible-xs-block visible-sm-inline-block col-md-4" style="margin-right: 10px;">
+                                            <h2>{{module[1]}}</h2>
+                                            <h4>ID: {{module[0]}} // Req. Clearance: {{module[4]}}</h4>
+                                            <div class="btn-group" style="margin-bottom: 5px;"> 
+                                                <a class="btn btn-success" onclick="jsoncall('{{module[0]}}', '1')">On</a> 
+                                                <a class="btn btn-danger" onclick="jsoncall('{{module[0]}}', '0')">Off</a>
+                                            </div>
+                                            {% if module[2] == "rgb-light" %}
+                                                <button class="btn jscolor" style="margin-left: 10px;" onchange="update(this.jscolor)">RGB</button>
+                                            {% endif %}
+                                        </div>
+                                    {% elif module[2] == "door" and profile[3] >= module[4] %}
+                                        <div class="well visible-lg-inline-block visible-md-inline-block visible-xs-block visible-sm-inline-block col-md-4" style="margin-right: 10px;">
+                                            <h2>{{module[1]}}</h2>
+                                            <h4>ID: {{module[0]}} // Req. Clearance: {{module[4]}}</h4>
+                                            <div class="btn-group" style="margin-bottom: 5px;"> 
+                                                <a class="btn btn-success" onclick="doorcall('open')">Open</a> 
+                                                <a class="btn btn-danger" onclick="doorcall('close')">Close</a>
+                                            </div>
+                                            <div class="btn-group" style="margin-bottom: 5px;"> 
+                                                <a class="btn btn-success btnfix" onclick="doorcall('nolockdown')">Scanning</a> 
+                                                <a class="btn btn-danger btnfix" onclick="doorcall('lockdown')">Lockdown</a>
+                                            </div>
+                                        </div>
+                                    {% endif %}
+                                {% else %}
+                                    <h3>Nothing here at the moment.</h3>
+                                {% endfor %}
+                            </div>                                 
+                        </div>                          
+                    </div>                         
+                    <div id="rs" class="tab-pane fade">
+                        {% for module in modules %}
+                            {% if module[2] == "relay" %}
+                                <div class="col-md-2"> 
+                                    <div class="well-lg"> 
+                                        <div class="well visible-lg-inline-block visible-md-inline-block visible-sm-block visible-xs-block" id="col1r1well"> 
+                                            <h3>{{module[1]}}</h3>
+                                            <h4>ID: {{module[0]}}</h4>  
+                                            <button type="button" class="btn btn-sm btn-success" onclick="jsoncall('{{module[0]}}', '1')">ON</button>                                         
+                                            <button type="button" class="btn btn-sm btn-danger" onclick="jsoncall('{{module[0]}}', '0')">OFF</button>                                         
+                                        </div>                                     
+                                    </div>                                 
+                                </div>
+                            {% endif %}
+                        {% else %}
+                            <h3>Nothing here at the moment.</h3>
+                        {% endfor %}             
+                    </div>                         
+                    <div id="sb" class="tab-pane fade"> 
+                        <h1>Sensors & Buttons</h1> 
+                        <h3>Sensor Data Here.</h3> 
+                        <div class="col-md-2"> 
+                            <div class="well-lg" id="col1r1sb"> 
+                                <h3>1</h3> 
+                                <div class="well visible-lg-inline-block visible-md-inline-block visible-sm-block visible-xs-block" id="col1r1wellsb"> 
+                                    <h3 id="doorstatus1" class="visible-sm-block visible-xs-block visible-md-inline-block visible-lg-inline-block">Door: N/A</h3> 
+                                </div>                                     
+                            </div>                                 
+                        </div>                             
+                    </div>
+                    <div id="com" class="tab-pane fade"> 
+                        <h1>Commercial Lights</h1> 
+                        <h3>This is for lights such as Philips Hue, and other devices that have their own API (except for my door)</h3>
+                        {% for module in modules %}
+                            {% if module[2] == "huelights" and profile[3] >= module[4] %}
+                                {% for device in commercial %}
+                                    <div class="well visible-lg-inline-block visible-md-inline-block visible-xs-block visible-sm-inline-block col-md-2" style="margin-right: 10px;">
+                                        <h2>{{device[0]}}</h2>
+                                        <h4>Tradfri ID: {{device[2]}} // Status: {{device[1]}}</h4>
+                                        <div class="btn-group" style="margin-bottom: 5px;"> 
+                                            <a class="btn btn-success" onclick="comcall('{{device[2]}}', 'on')">On</a> 
+                                            <a class="btn btn-danger" onclick="comcall('{{device[2]}}', 'off')">Off</a>
+                                        </div>
+                                        <button class="btn jscolor" onchange="update(this.jscolor)" style="margin-left: 10px;" id="{{device[2]}}jscolor">RGB</button>
+                                    </div>
+                                {% endfor %}
+                            {% endif %}
+                        {% else %}
+                            <h3>Nothing here at the moment.</h3>
+                        {% endfor %}
+                    </div>                          
+                    <div id="weather" class="tab-pane fade"> 
+                        <h1>Weather</h1> 
+                        <span class="span-8"> <h3 id="weatherpara"></h3> </span> 
+                        <span class="span4"> <img src="" class="img-circle" alt="WEATHER ICON" id="weatherico"> </span> 
+                        <table class="table table-condensed"> 
+                            <thead> 
+                                <tr> 
+                                    <th><h3>Type</h3></th> 
+                                    <th><h3>Value</h3></th> 
+                                </tr>                                     
+                            </thead>                                 
+                            <tbody id="weathertbody"> </tbody>                                 
+                        </table>                             
+                    </div>                         
+                    <div id="cams" class="tab-pane fade"> 
+                        <h1>Webcams</h1>
+                        <div class="well-lg"> 
+                            <h2>1</h2>
+                            <div class="well visible-lg-inline-block visible-md-inline-block visible-sm-inline-block visible-xs-inline-block">
+                                <iframe width="480" height="270" src="" scrolling="no" allowfullscreen webkitallowfullscreen frameborder="0" style="border: 0 none transparent;"></iframe>
+                            </div>                                 
+                        </div>
+                    </div>                         
+                    <div id="mqtt" class="tab-pane fade"> 
+                        <h1>MQTT Panel</h1> 
+                        <h3><b>Settings, etc. for MQTT.</b></h3> 
+                        <pre>MQTT Log: <br>-test<br>-test</pre>
+                        <h3><b>TO-DO:</b></h3>
+                        <ul class="">
+                            <li class="">Sensors</li>
+                            <li class="">MQTT Re-enable</li>
+                            <li class="">A lot of things</li>
+                        </ul>
+                        <h3><b>Online Devices:</b></h3>
+                        <ul class="list-group">
+                            {% for device in updevices %}
+                                <li class="list-group-item">{{device}}</li>
+                            {% else %}
+                                <h4>None</h4>
+                            {% endfor %}
+                        </ul>
+                        <h3>This program was written by James Whybrow. It runs on Flask web framework (which is Python) and uses Jinja2 templating.<br>More info coming soon.</h3> 
+                    </div>                         
+                    <div class="tab-pane">
+                        <p>Tab content goes here...</p>
+                    </div>
+                    <div class="tab-pane">
+                        <p>Tab content goes here...</p>
+                    </div>
+                </div>                     
+            </div>                 
+        </div>
+        <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">
+            <img alt="Creative Commons Licence" style="border-width:0; margin-top: 5px;" src="https://i.creativecommons.org/l/by-nc-nd/4.0/88x31.png" class="bottommargin" />
+        </a>
+        <a href="logout"><button class="btn btn-primary" style="float: right;">Logout</button></a>
+    </div>         
+</body>     
+<script src="https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.0.1/mqttws31.min.js" type="text/javascript"></script>     
+<script>
+$(document).ready(function() {
+  var weatherurl = "http://api.wunderground.com/api/fb5640bb9b0a372f/conditions/q/UK/London.json";
+  $.ajax({
+    url: weatherurl,
+    dataType: "jsonp",
+    success: function (parsed_json) {
+      var temp = parsed_json['current_observation']['temp_c'];
+      var area = parsed_json['current_observation']['display_location']['full'];
+      var wind = parsed_json['current_observation']['wind_string'];
+      var dewpoint = parsed_json['current_observation']['dewpoint_c'];
+      var weathertype = parsed_json['current_observation']['weather'];
+      var icon = parsed_json['current_observation']['icon_url'];
+      $("#weatherpara").append("<h3>The weather today is " + temp + " degrees celcius in " + area + ".</h3>");
+      $("#weathertbody").append("<tr id='weathertr'></tr>");
+      $("#weathertr").append("<h3>Temp</h3>");
+      $("#weathertr").append("<th><h3>" + temp + "°C</h3></th>");
+      $("#weathertbody").append("<tr id='weathertr2'></tr>");
+      $("#weathertr2").append("<h3>Wind</h3>");
+      $("#weathertr2").append("<th><h3>" + wind + "</h3></th>");
+      $("#weathertbody").append("<tr id='weathertr3'></tr>");
+      $("#weathertr3").append("<h3>Can Dew Form?</h3>");
+      if (dewpoint >= temp) {
+        $("#weathertr3").append("<th><h3>Yes</h3></th>");
+      }
+      else {
+        $("#weathertr3").append("<th><h3>No</h3></th>");
+      }
+      $("#weathertbody").append("<tr id='weathertr4'></tr>");
+      $("#weathertr4").append("<h3>Weather</h3>");
+      $("#weathertr4").append("<th><h3>" + weathertype + "</h3></th>");
+      $("#weatherico").attr("src", icon);
+    }
+  });
+});
+</script>     
+</html>
